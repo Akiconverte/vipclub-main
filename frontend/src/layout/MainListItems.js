@@ -81,22 +81,14 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   listItem: {
-    transition: "all 0.3s ease",
     borderRadius: 8,
     margin: '4px 8px',
-    width: 'auto',
+
     justifyContent: collapsed => collapsed ? 'center' : 'flex-start',
     minHeight: 48,
     padding: collapsed => collapsed ? '8px 12px' : '8px 16px',
-    "&:hover": {
-      backgroundColor: "#001F60",
-      "& $listItemIcon, & $listItemText, & $listItemText span": {
-        color: "#fff",
-      },
-    },
   },
   listItemIcon: {
-    transition: "color 0.3s ease",
     minWidth: collapsed => collapsed ? 0 : 40,
     marginRight: collapsed => collapsed ? 0 : theme.spacing(2),
     color: theme.palette.text.secondary,
@@ -105,12 +97,12 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
   },
   listItemText: {
-    transition: "color 0.3s ease, opacity 0.2s ease",
     '& span': {
       fontSize: '0.9rem',
       fontWeight: 500,
     },
     opacity: collapsed => collapsed ? 0 : 1,
+    transition: 'opacity 0.2s ease',
     display: collapsed => collapsed ? 'none' : 'block',
   },
   subheader: {
@@ -500,13 +492,6 @@ const MainListItems = (props) => {
             </ListSubheader>
             <>
               <ListItemLink
-                to="/groups"
-                primary={i18n.t("mainDrawer.listItems.groups") || "Grupos WhatsApp"}
-                icon={<FiUsers size={18} />}
-                isActive={isActivePath('/groups')}
-                collapsed={collapsed}
-              />
-              <ListItemLink
                 to="/tickets"
                 primary={i18n.t("mainDrawer.listItems.tickets")}
                 icon={<FiMessageSquare size={18} />}
@@ -679,22 +664,13 @@ const MainListItems = (props) => {
             )}
             
             {showOpenAi && (
-              <>
-                <ListItemLink
-                  to="/insights"
-                  primary={i18n.t("mainDrawer.listItems.insights") || "Insights IA"}
-                  icon={<FiCpu size={18} />}
-                  isActive={isActivePath('/insights')}
-                  collapsed={collapsed}
-                />
-                <ListItemLink
-                  to="/prompts"
-                  primary={i18n.t("mainDrawer.listItems.prompts")}
-                  icon={<FiCpu size={18} />}
-                  isActive={isActivePath('/prompts')}
-                  collapsed={collapsed}
-                />
-              </>
+              <ListItemLink
+                to="/prompts"
+                primary={i18n.t("mainDrawer.listItems.prompts")}
+                icon={<FiCpu size={18} />}
+                isActive={isActivePath('/prompts')}
+                collapsed={collapsed}
+              />
             )}
 
             {showIntegrations && (

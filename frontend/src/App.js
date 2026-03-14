@@ -11,7 +11,6 @@ import ColorModeContext from "./layout/themeContext";
 import { SocketContext, SocketManager } from './context/Socket/SocketContext';
 
 import Routes from "./routes";
-import api from "./services/api";
 
 const queryClient = new QueryClient();
 
@@ -21,35 +20,6 @@ const App = () => {
     const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
     const preferredTheme = window.localStorage.getItem("preferredTheme");
     const [mode, setMode] = useState(preferredTheme ? preferredTheme : prefersDarkMode ? "dark" : "light");
-
-    const [primaryColor, setPrimaryColor] = useState("#0F2F6B");
-    const [secondaryColor, setSecondaryColor] = useState("#2B6CB0");
-
-    useEffect(() => {
-        const fetchPublicSettings = async () => {
-            try {
-                const { data } = await api.get("/settings/public");
-                const primary = data?.find(s => s.key === "appPrimaryColor")?.value;
-                const secondary = data?.find(s => s.key === "appSecondaryColor")?.value;
-                const name = data?.find(s => s.key === "appName")?.value;
-                const favicon = data?.find(s => s.key === "appFavicon")?.value;
-
-                if (primary) setPrimaryColor(primary);
-                if (secondary) setSecondaryColor(secondary);
-                if (name) document.title = name;
-                if (favicon) {
-                    const link = document.querySelector("link[rel*='icon']") || document.createElement('link');
-                    link.type = 'image/x-icon';
-                    link.rel = 'shortcut icon';
-                    link.href = favicon;
-                    document.getElementsByTagName('head')[0].appendChild(link);
-                }
-            } catch (err) {
-                console.error("Erro ao buscar configurações públicas", err);
-            }
-        };
-        fetchPublicSettings();
-    }, []);
 
     const colorMode = React.useMemo(
         () => ({
@@ -86,13 +56,12 @@ const App = () => {
             },
             palette: {
                 type: mode,
-                primary: { main: mode === "light" ? primaryColor : primaryColor },
-                secondary: { main: mode === "light" ? secondaryColor : secondaryColor },
-                quicktags: { main: mode === "light" ? primaryColor : primaryColor },
-				sair: { main: mode === "light" ? primaryColor : "#333" },
-				vcard: { main: mode === "light" ? primaryColor : "#666" },
-                textPrimary: mode === "light" ? primaryColor : "#FFFFFF",
-                borderPrimary: mode === "light" ? primaryColor : "#FFFFFF",
+                primary: { main: mode === "light" ? "#2DDD7F" : "#FFFFFF" },
+                quicktags: { main: mode === "light" ? "#2DDD7F" : "#2DDD7F" },
+				sair: { main: mode === "light" ? "#2DDD7F" : "#333" },
+				vcard: { main: mode === "light" ? "#2DDD7F" : "#666" },
+                textPrimary: mode === "light" ? "#2DDD7F" : "#FFFFFF",
+                borderPrimary: mode === "light" ? "#2DDD7F" : "#FFFFFF",
                 dark: { main: mode === "light" ? "#333333" : "#F3F3F3" },
                 light: { main: mode === "light" ? "#F3F3F3" : "#333333" },
                 tabHeaderBackground: mode === "light" ? "#EEE" : "#666",

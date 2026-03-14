@@ -36,8 +36,6 @@ import reportsRoutes from './reportsRoutes';
 import geminiRoutes from "./geminiRoutes";
 import backupsRoutes from "./backupsRoutes";
 import stickerRoutes from "./stickerRoutes";
-import ticketInsightRoutes from "./ticketInsightRoutes";
-import groupRoutes from "./groupRoutes";
 
 const routes = Router();
 
@@ -78,7 +76,5 @@ routes.use(versionRouter);
 routes.use(geminiRoutes);
 routes.use(backupsRoutes);
 routes.use(stickerRoutes);
-routes.use(ticketInsightRoutes);
-routes.use(groupRoutes);
 
 export default routes;

@@ -21,7 +21,6 @@ import AppError from "../../errors/AppError";
 import { buildContactAddress } from "../../utils/global";
 import formatBody from "../../helpers/Mustache";
 import TicketUser from "../../models/TicketUser";
-import { AnalyzeTicketService } from "../AIAgentServices/AnalyzeTicketService";
 
 
 interface TicketData {
@@ -199,9 +198,6 @@ const UpdateTicketService = async ({
         // Para tickets de grupo com linkToGroup, apenas atualizar o status sem automações
         ticketTraking.finishedAt = moment().toDate();
       }
-      
-      // Chamada assíncrona para não bloquear (disparar análise de IA)
-      AnalyzeTicketService({ ticketId: ticket.id });
     }
 
     await ticket.update({

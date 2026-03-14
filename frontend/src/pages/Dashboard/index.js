@@ -78,15 +78,6 @@ const useStyles = makeStyles((theme) => ({
     background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.primary.dark} 100%)`,
     color: theme.palette.primary.contrastText,
   },
-  card1: {
-    background: "linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%)", // Azul
-  },
-  card2: {
-    background: "linear-gradient(135deg, #ea580c 0%, #fb923c 100%)", // Laranja  
-  },
-  card3: {
-    background: "linear-gradient(135deg, #15803d 0%, #4ade80 100%)", // Verde
-  },
   cardContent: {
     display: "flex",
     alignItems: "center",
@@ -307,7 +298,7 @@ const Dashboard = () => {
 
           {/* Em Conversa */}
           <Grid item xs={12} sm={6} md={4} lg={3}>
-            <Paper className={`${classes.card} ${classes.card1}`}>
+            <Paper className={classes.card}>
               <div className={classes.cardContent}>
                 <div className={classes.cardText}>
                   <Typography variant="subtitle2" className={classes.cardTitle}>
@@ -324,7 +315,7 @@ const Dashboard = () => {
 
           {/* Aguardando */}
           <Grid item xs={12} sm={6} md={4} lg={3}>
-            <Paper className={`${classes.card} ${classes.card2}`}>
+            <Paper className={classes.card}>
               <div className={classes.cardContent}>
                 <div className={classes.cardText}>
                   <Typography variant="subtitle2" className={classes.cardTitle}>
@@ -375,7 +366,7 @@ const Dashboard = () => {
 
           {/* Finalizados */}
           <Grid item xs={12} sm={6} md={4} lg={3}>
-            <Paper className={`${classes.card} ${classes.card3}`}>
+            <Paper className={classes.card}>
               <div className={classes.cardContent}>
                 <div className={classes.cardText}>
                   <Typography variant="subtitle2" className={classes.cardTitle}>

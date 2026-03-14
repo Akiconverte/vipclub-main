@@ -48,14 +48,6 @@ class Contact extends Model<Contact> {
   @Column
   isGroup: boolean;
 
-  @Default(false)
-  @Column
-  groupMode: boolean;
-
-  @Default(null)
-  @Column
-  groupTag: string;
-
   @CreatedAt
   createdAt: Date;
 
